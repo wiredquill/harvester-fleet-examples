@@ -3,10 +3,10 @@ kind: VirtualMachineImage
 metadata:
   annotations:
     harvesterhci.io/storageClassName: harvester-longhorn
-  name: opensuse-leap-155
+  name: opensuse-leap-156
   labels:
     harvesterhci.io/image-type: raw_qcow2
-    harvesterhci.io/imageDisplayName: "opensuse-leap-15.5"
+    harvesterhci.io/imageDisplayName: "opensuse-leap-15.6"
     harvesterhci.io/os-type: openSUSE
   namespace: default
 spec:
@@ -16,4 +16,4 @@ spec:
   pvcNamespace: ""
   retry: 3
   sourceType: download
-  url: https://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.5/images/openSUSE-Leap-15.5.x86_64-NoCloud.qcow2
+  url: https://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.6/images/openSUSE-Leap-15.6.x86_64-NoCloud.qcow2
