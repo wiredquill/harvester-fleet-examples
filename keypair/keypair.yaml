@@ -1,7 +1,7 @@
 apiVersion: harvesterhci.io/v1beta1
 kind: KeyPair
 metadata:
-  name: vm-workload-keys
+  name: erin-m2
   namespace: default
 spec:
   publicKey: |-
