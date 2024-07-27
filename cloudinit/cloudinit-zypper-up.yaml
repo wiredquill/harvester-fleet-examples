@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    harvesterhci.io/cloud-init-template: user
+  name: machine-id
+  namespace: default
+data:
+  cloudInit: |-
+    #cloud-config
+    runcmd:
+      - curl http://rmt.wiredquill.com/tools/rmt-client-setup --output rmt-client-setup
+      - yes | sh rmt-client-setup https://rmt.wiredquill.com/
+      - yes | zypper up

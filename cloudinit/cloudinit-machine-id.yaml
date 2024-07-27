@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    harvesterhci.io/cloud-init-template: user
+  name: machine-id
+  namespace: default
+data:
+  cloudInit: |-
+    #cloud-config
+    runcmd:
+      - dbus-uuidgen --ensure
+      - systemd-machine-id-setup
