@@ -11,6 +11,7 @@ spec:
     - "/vmimage"
     - "/keypair"
     - "/cloudinit"
+    - "/storage"
   repo: https://github.com/harvester/harvester-fleet-examples
   targetNamespace: default
   targets:
