@@ -12,7 +12,7 @@ spec:
     - "/keypair"
     - "/cloudinit"
     - "/storage"
-  repo: https://github.com/harvester/harvester-fleet-examples
+  repo: https://github.com/wirequill/harvester-fleet-examples
   targetNamespace: default
   targets:
     - clusterSelector: {} # please review clusterSelector to ensure correct set of clusters is targetted
