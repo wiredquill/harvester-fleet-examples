@@ -7,11 +7,11 @@ metadata:
   labels:
     harvesterhci.io/image-type: raw_qcow2
     harvesterhci.io/imageDisplayName: "sle15-sp6-gold-20250216-brew"
-    harvesterhci.io/os-type: openSUSE
+    harvesterhci.io/os-type: SLEs
   namespace: default
 spec:
   checksum: ""
-  displayName: sle-15sp5-golden
+  displayName: sle-15sp6-golden-brew
   pvcName: ""
   pvcNamespace: ""
   retry: 3
