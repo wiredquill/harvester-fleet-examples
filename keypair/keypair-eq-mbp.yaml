@@ -1,8 +1,0 @@
-apiVersion: harvesterhci.io/v1beta1
-kind: KeyPair
-metadata:
-  name: erin-mbp
-  namespace: default
-spec:
-  publicKey: |-
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDjJQ4+zH1jBn69pvqW2qvccn4cUvU6zWY26WyNCmfT5HSKMAtkV4/WlYX8uTnxd4tvU4VtWR8wcrQiFJf/HCy/TM54bSqrxOQ4BPsZaObbnbQAS39I9Ajucr/Au/Drvb+S/sk+9OQBDHkuGolAypKDXxeCp5UlJTAiRiop2E8uEaxGXHX0MUCOKyedtxM8+TR7G1SipZUgwECrUcT4Jnk29i/ni6TrJspt1VvZqBDpP7k7FOaQNRo3j/YFWMU9QAm97ejjA5ZBdtDICO4pRevQ5/wzgcPpJXZ/7L6R7qtI8cr1Dxlp1hGtKULKw30ab4zOn/Dy7P70ZKxJn67iI+L/hv1pkOmUkHMtRfJxmWUc123HvsSmxkBP+43XF2DpPzreoNFUUn3CjreLF/7Z4L8lDMO7VHulRMKpdcpWL9D8bsHGEiMvgKUvWfEip2XFblvIpeq0MI1YnGn7GujTES5GRLk++L6wIGgZdqqKSzg7a7s0anNRLZZHkn6A4bMYhi0= erin@Erins-MacBook-Pro.local
