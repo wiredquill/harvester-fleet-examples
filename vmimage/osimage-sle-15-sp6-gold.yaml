@@ -6,7 +6,7 @@ metadata:
   name: opensuse-leap-156
   labels:
     harvesterhci.io/image-type: raw_qcow2
-    harvesterhci.io/imageDisplayName: "opensuse-leap-15.6"
+    harvesterhci.io/imageDisplayName: "sle15-sp6-gold-20250216"
     harvesterhci.io/os-type: openSUSE
   namespace: default
 spec:
@@ -16,4 +16,4 @@ spec:
   pvcNamespace: ""
   retry: 3
   sourceType: download
-  url: http://10.0.9.10/images/openSUSE-Leap-15.6.x86_64-NoCloud.qcow2
+  url: http://10.0.9.10/images/sle15-sp6-20250215.qcow2
