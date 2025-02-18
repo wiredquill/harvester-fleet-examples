@@ -1,0 +1,19 @@
+resources:
+  - loadbalancer-ip.yaml
+
+patches:
+  - target:
+      kind: IPPool
+      name: global-ip-pool
+    patch: |-
+      - op: add
+        path: /spec/ranges/-
+        value:
+          subnet: 10.9.0.0/24
+          rangeStart: 10.9.0.120
+          rangeEnd: 10.9.0.139
+        selector:
+          scope:
+            - project: "*"
+              namespace: "*"
+              guestCluster: "mort"
