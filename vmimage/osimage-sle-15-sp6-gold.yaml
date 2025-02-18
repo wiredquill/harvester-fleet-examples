@@ -8,7 +8,7 @@ metadata:
     harvesterhci.io/image-type: raw_qcow2
     harvesterhci.io/imageDisplayName: "sle15-sp6-gold-20250216"
     harvesterhci.io/os-type: SLEs
-  namespace: default
+  namespace: lab
 spec:
   checksum: ""
   displayName: sle15-sp6-gold
