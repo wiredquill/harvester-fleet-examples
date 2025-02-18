@@ -3,7 +3,7 @@ kind: StorageClass
 metadata:
   name: lab
   annotations:
-    storageclass.kubernetes.io/is-default-class: "true"
+    storageclass.kubernetes.io/is-default-class: "false"
 allowVolumeExpansion: true
 parameters:
   numberOfReplicas: '1'
