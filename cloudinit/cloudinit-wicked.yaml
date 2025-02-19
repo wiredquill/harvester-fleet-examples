@@ -1,0 +1,14 @@
+#cloud-config
+
+runcmd:
+  - rm /etc/machine-id
+  - systemd-machine-id-setup
+  - wicked config --random-mac
+  - systemctl restart wickedd-dhcp4.service
+  - - systemctl
+    - enable
+    - --now
+    - qemu-guest-agent.service
+package_update: true
+packages:
+  - qemu-guest-agent
