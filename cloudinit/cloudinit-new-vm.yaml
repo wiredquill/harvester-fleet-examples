@@ -1,0 +1,58 @@
+#cloud-config
+debug: True  # Enable debug mode for more verbose output during cloud-init execution
+
+# Disable IPv6 system-wide
+write_files:
+  - path: /etc/sysctl.d/99-disable-ipv6.conf
+    content: |
+      # Disable IPv6
+      net.ipv6.conf.all.disable_ipv6 = 1
+      net.ipv6.conf.default.disable_ipv6 = 1
+      net.ipv6.conf.lo.disable_ipv6 = 1
+
+
+
+# Create a user named 'sles', set a password, and allow the user to use sudo without a password
+users:
+  - default  # Include the default user configuration
+  - name: sles  # Create a new user named 'sles'
+    shell: /bin/bash  # Set the default shell to bash
+    groups: users  # Add the user to the 'users' group
+    lock_passwd: false  # Allow password login
+    passwd: $6$SalTsaLt$SHGldCIOrWL1nDWWgfAm/C58QJX8SryxNOPZ6rOCppvM6cw2YkhoNa8i1RmS72v4aiw1Khvuy/vKdK5pR3WqL1  # SHA-512 hashed password for the user
+    sudo: ALL=(ALL) NOPASSWD:ALL  # Allow passwordless sudo for this user
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDrkMfTTDxPafXv+E1olBKCqu3ggaRGeitMaJ5iJHr588Bo2PcPY+xlM5iM1WITNBwUtdotxtIPVv25sijeEB4eCn4Sx/460FB9cbucGMUqZeeMZe++ibziT/5vyDQhIBwEpw3tm5qtd1rLJkdIbq6hyxbkH2lr8RKfEGA9CCCTFeX7CPHHsVx3KXoS2TDceVHEaMaNBSpT1wkUJ26WLnbjYIkeTI2tqWmS/zV2u8wE9hyWsKheXRL3P9Ams+n2t4UmjNb0Xs96hkjHbcl8Pa8dlrOOER9oINWblfbuJR28Q3vlPR/3yLC1JI9o/+Vq92aMRZiA2BMg+uC/vj18GnKwrSJQ1tEt4hnHxwTaMBjBhXuH6AJDL1LxwKMhP8iNHmke/VuIUcjtusRmpDGtVy/Jov506FAN9coWqg0DC7RojwvGaK8SSCHDV6XLZGXg5PuoyiagCRqGsp6Y5FUMtodNLEzvWe3yLS7gOLTEfoddZM9cn+u9jzQVgyqfjT9xUtc= erquill@Erins-MacBook-Pro-2.local  # Add your SSH public key for this user
+
+# Set the root user password
+# To create the SHA-512 hashes used in the example, run the command: `openssl passwd -6 -salt SalTsaLt _PASSWORD_`
+chpasswd:
+  list: |
+    root:$6$SalTsaLt$SHGldCIOrWL1nDWWgfAm/C58QJX8SryxNOPZ6rOCppvM6cw2YkhoNa8i1RmS72v4aiw1Khvuy/vKdK5pR3WqL1  # SHA-512 hashed password for the root user
+  expire: False  # Do not force password change on first login
+# Connect to your RMT server and run the setup script without manual interaction, update packages, and start required services
+
+runcmd:
+  # Download the RMT client setup script from your server
+  - curl http://rmt.wiredquill.com/tools/rmt-client-setup --output rmt-client-setup
+  
+  # Run the RMT client setup script and automatically accept any prompts
+  - yes | sh rmt-client-setup https://rmt.wiredquill.com/
+  
+  # Register the system for the PackageHub extension
+  - SUSEConnect -p PackageHub/15.5/x86_64 
+  
+  # Register the system for the SLE Containers module
+  - SUSEConnect -p sle-module-containers/15.5/x86_64
+  
+  # Update all installed packages without manual interaction
+  - zypper --non-interactive update
+  
+  # Enable and start the qemu-guest-agent service without blocking the execution of subsequent commands
+  - systemctl enable --now --no-block qemu-guest-agent.service
+  
+  # Install the yast2_basis pattern
+  - zypper in -y -t pattern yast2_basis 
+  
+  # Install additional specified packages
+  - [ zypper, in, -y, qemu-guest-agent, git-core, bash-completion, vim, nano, nfs-client, xclip, iputils, wget, mc, fastfetch, tree, btop, k9s, kubernetes1.28-client, helm ]
